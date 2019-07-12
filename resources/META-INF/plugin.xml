@@ -1,0 +1,37 @@
+<idea-plugin>
+    <id>cn.luojunhui.touchfish</id><!--插件id，不能和其他插件项目重复，推荐com.xxx.xxx的格式 -->
+    <name>Touch Fish</name><!--插件名称 -->
+    <version>1.0</version><!--插件版本号 -->
+    <vendor email="yulewg@gmail.com" url="https://github.com/luojunhui/touch-fish">junhui</vendor>
+
+    <!--插件描述信息，在这里可以介绍你的插件内容，支持HTML标签 -->
+    <description>
+        <![CDATA[
+      开启一个toolWindow展示文件的文本内容.<br>
+      <ol>
+    <li>打开settings的Other Settings下的<strong>touch fish<strong></li>
+    <li>输入文本的绝对路径</li>
+    <li>输入阅读的行数和每次阅读多少行</li>
+    <li>快捷键&uarr;向上读取内容</li>
+    <li>快捷键&darr;向下读取内容</li>
+    <li>在keymap里可以给本插件设置快捷键,可以快速呼出与隐藏</li>
+</ol>
+      ]]>
+    </description>
+
+    <!--插件版本变更日志，支持HTML标签 -->
+<!--    <change-notes>-->
+<!--    </change-notes>-->
+
+
+    <idea-version since-build="145"/>
+    <depends>com.intellij.modules.lang</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable groupId="other" instance="config.BookConfigurable"></applicationConfigurable>
+        <applicationService serviceInterface="config.ConfigService" serviceImplementation="config.ConfigServiceImpl"/>
+        <toolWindow id="Touch Fish" secondary="false" anchor="bottom" icon="/icons/fish_14.png"
+                    factoryClass="windows.BookWindowFactory">
+        </toolWindow>
+    </extensions>
+</idea-plugin>
