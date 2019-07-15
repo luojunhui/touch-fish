@@ -2,7 +2,7 @@
 一款jetbrains旗下的ide上touch fish(摸鱼)的插件,一般用来看小说?
 
 # 效果图
-![Touch Fish window](files/window.png)
+![Touch Fish window](files/window.gif)
 
 
 # 安装
