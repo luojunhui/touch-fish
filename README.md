@@ -1,5 +1,5 @@
 # touch-fish
-一款jetbrains旗下的idea上touch fish(摸鱼)的插件,一般用来看小说?
+一款jetbrains旗下的ide上touch fish(摸鱼)的插件,一般用来看小说?
 
 # 效果图
 ![Touch Fish window](files/window.png)
