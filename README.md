@@ -9,7 +9,9 @@
 以IDEA为例:
 ```Intellij IDEA File——>Settings——>IDE setttings——>Plugins——>Install plugin from disk```
 
-选择`touch-fish.jar`,完成后重启IDEA,可以看到IDEA下方工具栏(与Terminal同一行)里多了个`Touch Fish`了.
+选择`touch-fish.jar`,完成后重启IDEA,可以看到IDEA下方工具栏(与Terminal同一行)里多了个`Touch Fish`了.  
+`touch-fish.jar`文件请到[https://github.com/luojunhui/touch-fish/releases](https://github.com/luojunhui/touch-fish/releases)下载最新版,也可以下载本项目后自行编译.
+
 
 # 使用
 
