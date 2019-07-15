@@ -25,7 +25,7 @@ public class BookConfigurable implements SearchableConfigurable {
     @NotNull
     @Override
     public String getId() {
-        return "touch fish";
+        return "Touch Fish";
     }
 
     @Nullable
@@ -43,7 +43,7 @@ public class BookConfigurable implements SearchableConfigurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "touch fish";
+        return "Touch Fish";
     }
 
     @Nullable
@@ -113,17 +113,16 @@ public class BookConfigurable implements SearchableConfigurable {
             } catch (IOException e) {
             }
             config.setLines(lines);
-
             ConfigService.getInstance().setState(config);
         }
     }
 
     @Override
     public void reset() {
-        Config confing = ConfigService.getInstance().getState();
-        this.form.setBookPath(confing.getBookPath());
-        this.form.setLine(confing.getLine());
-        this.form.setRowCount(confing.getRowCount());
+        Config config = ConfigService.getInstance().getState();
+        this.form.setBookPath(config.getBookPath());
+        this.form.setLine(config.getLine());
+        this.form.setRowCount(config.getRowCount());
     }
 
     /**
