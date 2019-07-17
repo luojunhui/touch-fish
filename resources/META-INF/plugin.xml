@@ -7,15 +7,17 @@
     <!--插件描述信息，在这里可以介绍你的插件内容，支持HTML标签 -->
     <description>
         <![CDATA[
-      开启一个toolWindow展示文件的文本内容.<br>
+
+    <p>一款jetbrains旗下的ide上touch fish(摸鱼)的插件,一般用来看小说.</p>
       <ol>
     <li>打开settings的Other Settings下的<strong>touch fish<strong></li>
     <li>输入文本的绝对路径</li>
-    <li>输入阅读的行数和每次阅读多少行</li>
+    <li>输入页码和每次阅读多少行</li>
     <li>快捷键&uarr;向上读取内容</li>
     <li>快捷键&darr;向下读取内容</li>
     <li>在keymap里可以给本插件设置快捷键,可以快速呼出与隐藏</li>
 </ol>
+<p>项目地址:<a href="https://github.com/luojunhui/touch-fish">https://github.com/luojunhui/touch-fish</p>
       ]]>
     </description>
 

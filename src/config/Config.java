@@ -7,15 +7,18 @@ import java.util.List;
 /**
  * Config.class
  * 配置类
+ *
  * @author junhui
  */
 public class Config {
     @OptionTag
     private String bookPath;
     @OptionTag
-    private Integer line = 0;
+    private Integer page = 1;
     @OptionTag
-    private Integer rowCount = 0;
+    private Integer pageSize = 3;
+    @OptionTag
+    private Integer totalPage = 0;
 
     @OptionTag
     private List<String> lines;
@@ -32,20 +35,28 @@ public class Config {
         this.bookPath = bookPath;
     }
 
-    public Integer getLine() {
-        return line;
+    public Integer getPage() {
+        return page;
     }
 
-    public void setLine(Integer line) {
-        this.line = line;
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    public Integer getRowCount() {
-        return rowCount;
+    public Integer getPageSize() {
+        return pageSize;
     }
 
-    public void setRowCount(Integer rowCount) {
-        this.rowCount = rowCount;
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(Integer totalPage) {
+        this.totalPage = totalPage;
     }
 
     public List<String> getLines() {

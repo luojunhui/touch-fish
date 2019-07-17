@@ -11,6 +11,9 @@ import config.ConfigService;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Book.class
@@ -20,6 +23,7 @@ import java.awt.event.KeyListener;
 public class Book {
     private final int PREV = 0;
     private final int NEXT = 1;
+    private final int CURRENT = 2;
 
     private JPanel book;
     private JTextPane text;
@@ -32,13 +36,9 @@ public class Book {
     private void init() {
         Config config = ConfigService.getInstance().getState();
         if (StringUtil.isNotEmpty(config.getBookPath())) {
-            if (config.getLines().size() > config.getLine()) {
-                this.readText(NEXT);
-            } else {
-                this.text.setText("没有更多内容...");
-            }
+            this.readText(CURRENT);
         } else {
-            this.text.setText("没有文本文件路径...");
+            this.setText("没有文本文件路径...");
         }
 
         // 设置键盘监听
@@ -64,49 +64,72 @@ public class Book {
         });
     }
 
-
+    /**
+     * 按页读取内容
+     *
+     * @param op
+     */
     private void readText(int op) {
         Config config = ConfigService.getInstance().getState();
-        StringBuffer sb = new StringBuffer();
-        String curLine = config.getLines().get(config.getLine());
+        int curPage = config.getPage();
+        List list = null;
         switch (op) {
             case PREV:
-                int tmp = config.getLine() - config.getRowCount();
-                if (tmp == 0) {
-                    for (int i = 0; i < config.getRowCount(); i++) {
-                        String line = config.getLines().get(i);
-                        sb.append(line).append("\n");
-                    }
-                    config.setLine(config.getRowCount());
-                } else if (tmp > 0) {
-                    for (int i = config.getLine() - config.getRowCount(); i < config.getLine(); i++) {
-                        String line = config.getLines().get(i);
-                        sb.append(line).append("\n");
-                    }
-                    config.setLine(config.getLine() - config.getRowCount());
+                int prevPage = curPage == 1 ? curPage : curPage - 1;
+                list = this.readFromPage(config.getLines(), prevPage, config.getPageSize());
+                if (prevPage == curPage) {
+                    Notifications.Bus.notify(new Notification("", "tip", "不能再往前翻页了...", NotificationType.INFORMATION));
+                    config.setPage(1);
                 } else {
-                    config.setLine(0);
-                    Notifications.Bus.notify(new Notification("", "tips", "不能再往前了...", NotificationType.INFORMATION));
+                    config.setPage(prevPage);
                 }
                 break;
             case NEXT:
-                if (config.getLine() + config.getRowCount() < config.getLines().size()) {
-                    for (int i = config.getLine(); i < config.getLine() + config.getRowCount(); i++) {
-                        String line = config.getLines().get(i);
-                        sb.append(line).append("\n");
-                    }
-                    config.setLine(config.getLine() + config.getRowCount());
+                int nextPage = curPage == config.getTotalPage() ? curPage : curPage + 1;
+                list = this.readFromPage(config.getLines(), nextPage, config.getPageSize());
+                if (nextPage == curPage) {
+                    Notifications.Bus.notify(new Notification("", "tip", "不能再后前翻页了...", NotificationType.INFORMATION));
+                    config.setPage(curPage);
                 } else {
-                    sb.append(curLine).append("\n");
-                    config.setLine(config.getLines().size() - 1);
-                    Notifications.Bus.notify(new Notification("", "tips", "没有更多内容了", NotificationType.INFORMATION));
+                    config.setPage(nextPage);
                 }
+                break;
+            case CURRENT:
+                list = this.readFromPage(config.getLines(), curPage, config.getPageSize());
                 break;
             default:
                 break;
         }
-        this.text.setText(sb.toString());
+        this.setText(list);
         ConfigService.getInstance().setState(config);
+    }
+
+    /**
+     * 使用java8 stream分页读取
+     *
+     * @param list
+     * @param page     页码
+     * @param pageSize 每页行数
+     * @return
+     */
+    private List<String> readFromPage(List<String> list, int page, int pageSize) {
+        ArrayList<String> prevPageList = list.stream()
+                .skip((page - 1) * pageSize)
+                .limit(pageSize)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return prevPageList;
+    }
+
+    private void setText(List list) {
+        if (list != null && list.size() > 0) {
+            StringBuffer sb = new StringBuffer();
+            list.forEach(s -> sb.append(s).append("\n"));
+            this.text.setText(sb.toString());
+        }
+    }
+
+    private void setText(String text) {
+        this.text.setText(text);
     }
 
     public JComponent getContent() {

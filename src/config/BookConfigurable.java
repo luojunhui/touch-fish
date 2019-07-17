@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * BookConfigurable.class
+ *
  * @author junhui
  */
 public class BookConfigurable implements SearchableConfigurable {
@@ -101,15 +102,17 @@ public class BookConfigurable implements SearchableConfigurable {
      */
     @Override
     public void apply() throws ConfigurationException {
-        if (this.form != null){
+        if (this.form != null) {
             Config config = ConfigService.getInstance().getState();
             config.setBookPath(this.form.getBookPath());
-            config.setLine(this.form.getLine());
-            config.setRowCount(this.form.getRowCount());
+            config.setPage(this.form.getPage());
+            config.setPageSize(this.form.getPageSize());
             // 更新文本内容
             List<String> lines = null;
             try {
                 lines = Files.readAllLines(Paths.get(config.getBookPath()));
+                int totalPage = (lines.size() + config.getPageSize() - 1) / config.getPageSize();
+                config.setTotalPage(totalPage);
             } catch (IOException e) {
             }
             config.setLines(lines);
@@ -121,8 +124,8 @@ public class BookConfigurable implements SearchableConfigurable {
     public void reset() {
         Config config = ConfigService.getInstance().getState();
         this.form.setBookPath(config.getBookPath());
-        this.form.setLine(config.getLine());
-        this.form.setRowCount(config.getRowCount());
+        this.form.setPage(config.getPage());
+        this.form.setPageSize(config.getPageSize());
     }
 
     /**

@@ -7,13 +7,14 @@ import javax.swing.*;
 /**
  * PluginSettingForm.class
  * 配置页的表单
+ *
  * @author junhui
  */
 public class PluginSettingForm {
     private JPanel pluginSettingPanel;
     private JTextField pathField;
-    private JTextField lineField;
-    private JTextField rowCountField;
+    private JTextField pageTextField;
+    private JTextField pageSizeTextField;
 
     public JPanel getPluginSettingPanel() {
         return this.pluginSettingPanel;
@@ -24,11 +25,11 @@ public class PluginSettingForm {
      */
     private void createUIComponents() {
         Config config = ConfigService.getInstance().getState();
-        String bookPath = config.getBookPath();
+        String bookPath = config.getBookPath().trim();
         if (StringUtil.isNotEmpty(bookPath)) {
             this.pathField.setText(bookPath);
-            this.lineField.setText(String.valueOf(config.getLine()));
-            this.rowCountField.setText(String.valueOf(config.getRowCount()));
+            this.pageTextField.setText(String.valueOf(config.getPage()));
+            this.pageSizeTextField.setText(String.valueOf(config.getPageSize()));
         }
     }
 
@@ -36,23 +37,43 @@ public class PluginSettingForm {
         return this.pathField.getText();
     }
 
-    public int getLine() {
-        return Integer.valueOf(this.lineField.getText());
+    /**
+     * 获取设置的行数,不能小于1
+     *
+     * @return
+     */
+    public int getPage() {
+        int line = Integer.valueOf(this.pageTextField.getText());
+        if (line < 1) {
+            this.setPage(1);
+            return 1;
+        }
+        return line;
     }
 
     public void setBookPath(String s) {
         this.pathField.setText(s);
     }
 
-    public void setLine(int line) {
-        this.lineField.setText(String.valueOf(line));
+    public void setPage(int line) {
+        this.pageTextField.setText(String.valueOf(line));
     }
 
-    public int getRowCount(){
-        return Integer.valueOf(this.rowCountField.getText());
+    /**
+     * 获取加载行数,不能小于1
+     *
+     * @return
+     */
+    public int getPageSize() {
+        int rowCount = Integer.valueOf(this.pageSizeTextField.getText());
+        if (rowCount < 1) {
+            this.setPageSize(1);
+            return 1;
+        }
+        return rowCount;
     }
 
-    public void setRowCount(int line) {
-        this.rowCountField.setText(String.valueOf(line));
+    public void setPageSize(int rowCount) {
+        this.pageSizeTextField.setText(String.valueOf(rowCount));
     }
 }
