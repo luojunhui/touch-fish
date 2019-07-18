@@ -1,16 +1,25 @@
 <idea-plugin>
     <id>cn.luojunhui.touchfish</id><!--插件id，不能和其他插件项目重复，推荐com.xxx.xxx的格式 -->
     <name>Touch Fish</name><!--插件名称 -->
-    <version>1.0</version><!--插件版本号 -->
-    <vendor email="yulewg@gmail.com" url="https://github.com/luojunhui/touch-fish">junhui</vendor>
+    <version>2.1</version><!--插件版本号 -->
+    <vendor email="130046422@qq.com" url="https://github.com/luojunhui/touch-fish">luojunhui</vendor>
 
     <!--插件描述信息，在这里可以介绍你的插件内容，支持HTML标签 -->
     <description>
         <![CDATA[
-
-    <p>一款jetbrains旗下的ide上touch fish(摸鱼)的插件,一般用来看小说.</p>
+    <p>If you have nothing to do, why don't you try reading with this plug-in?</p>
+     <ol>
+    <li>Find the "Touch Fish" settings interface under ide settings.</li>
+    <li>Enter the absolute path of the text file.</li>
+    <li>Enter page number and number of rows per page.</li>
+    <li>Shortcut key &uarr; read content up</li>
+    <li>Shortcut &darr; read content down</li>
+    <li>In keymap, you can set shortcut keys for text windows, which can quickly exhale and hide.</li>
+</ol>
+    <hr>
+    <p>如果你无事可作,为何不试试用此插件看书呢?</p>
       <ol>
-    <li>打开settings的Other Settings下的<strong>touch fish<strong></li>
+    <li>在ide设置下找到“Touch Fish”设置界面。</li>
     <li>输入文本的绝对路径</li>
     <li>输入页码和每次阅读多少行</li>
     <li>快捷键&uarr;向上读取内容</li>
@@ -22,8 +31,16 @@
     </description>
 
     <!--插件版本变更日志，支持HTML标签 -->
-<!--    <change-notes>-->
-<!--    </change-notes>-->
+    <change-notes>
+        <![CDATA[
+        <ul>
+            <li>V2.1发布,添加插件英文说明,设置界面文字.</li>
+            <li>V2.0发布,修改翻页方式.</li>
+            <li>V1.1修复部分Bug.</li>
+            <li>V1.0发布.</li>
+        </ul>
+    ]]>
+    </change-notes>
 
 
     <idea-version since-build="145"/>
