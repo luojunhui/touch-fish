@@ -1,13 +1,13 @@
 <idea-plugin>
     <id>cn.luojunhui.touchfish</id><!--插件id，不能和其他插件项目重复，推荐com.xxx.xxx的格式 -->
     <name>Touch Fish</name><!--插件名称 -->
-    <version>2.1</version><!--插件版本号 -->
-    <vendor email="130046422@qq.com" url="https://github.com/luojunhui/touch-fish">luojunhui</vendor>
+    <version>2.2</version><!--插件版本号 -->
+    <vendor email="130046422@qq.com" url="https://github.com/luojunhui">luojunhui</vendor>
 
     <!--插件描述信息，在这里可以介绍你的插件内容，支持HTML标签 -->
     <description>
         <![CDATA[
-    <p>If you have nothing to do, why don't you try reading with this plug-in?</p>
+    <p>If you have nothing to do, why don't you try reading with this plugin?</p>
      <ol>
     <li>Find the "Touch Fish" settings interface under ide settings.</li>
     <li>Enter the absolute path of the text file.</li>
@@ -34,10 +34,11 @@
     <change-notes>
         <![CDATA[
         <ul>
-            <li>V2.1发布,添加插件英文说明,设置界面文字.</li>
-            <li>V2.0发布,修改翻页方式.</li>
-            <li>V1.1修复部分Bug.</li>
-            <li>V1.0发布.</li>
+            <li>v2.2 add change notes description in English</li>
+            <li>V2.1 add plugin description in English and modify the text of the settings interface.</li>
+            <li>V2.0 change the way to turn pages.</li>
+            <li>V1.1 fix bugs.</li>
+            <li>V1.0 release.</li>
         </ul>
     ]]>
     </change-notes>
