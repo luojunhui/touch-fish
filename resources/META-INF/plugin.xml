@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>cn.luojunhui.touchfish</id><!--插件id，不能和其他插件项目重复，推荐com.xxx.xxx的格式 -->
     <name>Touch Fish</name><!--插件名称 -->
-    <version>2.2</version><!--插件版本号 -->
+    <version>2.3</version><!--插件版本号 -->
     <vendor email="130046422@qq.com" url="https://github.com/luojunhui">luojunhui</vendor>
 
     <!--插件描述信息，在这里可以介绍你的插件内容，支持HTML标签 -->
@@ -10,7 +10,7 @@
     <p>If you have nothing to do, why don't you try reading with this plugin?</p>
      <ol>
     <li>Find the "Touch Fish" settings interface under ide settings.</li>
-    <li>Enter the absolute path of the text file.</li>
+    <li>Choose the text file.</li>
     <li>Enter page number and number of rows per page.</li>
     <li>Shortcut key &uarr; read content up</li>
     <li>Shortcut &darr; read content down</li>
@@ -20,7 +20,7 @@
     <p>如果你无事可作,为何不试试用此插件看书呢?</p>
       <ol>
     <li>在ide设置下找到“Touch Fish”设置界面。</li>
-    <li>输入文本的绝对路径</li>
+    <li>选择你想要阅读的txt文件</li>
     <li>输入页码和每次阅读多少行</li>
     <li>快捷键&uarr;向上读取内容</li>
     <li>快捷键&darr;向下读取内容</li>
@@ -34,6 +34,7 @@
     <change-notes>
         <![CDATA[
         <ul>
+            <li>v2.3 change input file path to select file on settings form</li>
             <li>v2.2 add change notes description in English</li>
             <li>V2.1 add plugin description in English and modify the text of the settings interface.</li>
             <li>V2.0 change the way to turn pages.</li>

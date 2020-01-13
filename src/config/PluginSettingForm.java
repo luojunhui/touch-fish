@@ -1,8 +1,11 @@
 package config;
 
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
+import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
 
 import javax.swing.*;
+import java.io.File;
 
 /**
  * PluginSettingForm.class
@@ -11,30 +14,55 @@ import javax.swing.*;
  * @author junhui
  */
 public class PluginSettingForm {
-    private JPanel pluginSettingPanel;
-    private JTextField pathField;
-    private JTextField pageTextField;
+    private JPanel settingPanel;
+    private TextFieldWithBrowseButton chooseFileBtn;
     private JTextField pageSizeTextField;
+    private JTextField pageTextField;
+    private JLabel filePath;
+    private JLabel pageSize;
+    private JLabel curPage;
 
-    public JPanel getPluginSettingPanel() {
-        return this.pluginSettingPanel;
+    public PluginSettingForm() {
+        this.init();
+    }
+
+    public JPanel getSettingPanel() {
+        return this.settingPanel;
     }
 
     /**
      * 读取xml获取历史配置
      */
-    private void createUIComponents() {
+    private void init() {
+        //按钮绑定事件
+        this.chooseFileBtn.addBrowseFolderListener("选择文件", null, null,
+                FileChooserDescriptorFactory.createSingleFileDescriptor("txt"));
+
+
         Config config = ConfigService.getInstance().getState();
         String bookPath = config.getBookPath().trim();
         if (StringUtil.isNotEmpty(bookPath)) {
-            this.pathField.setText(bookPath);
-            this.pageTextField.setText(String.valueOf(config.getPage()));
+            this.chooseFileBtn.getTextField().setText(bookPath);
             this.pageSizeTextField.setText(String.valueOf(config.getPageSize()));
+            this.pageTextField.setText(String.valueOf(config.getPage()));
         }
     }
 
+    private void openFileAndSetPath(int selectedMode, Boolean isSupportMultiSelect) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(selectedMode);
+        fileChooser.setMultiSelectionEnabled(isSupportMultiSelect);
+        fileChooser.showOpenDialog(null);
+
+        File chooseFile = fileChooser.getSelectedFile();
+        String bookPath = chooseFile.getAbsolutePath();
+        this.chooseFileBtn.getTextField().setText(bookPath);
+
+    }
+
+
     public String getBookPath() {
-        return this.pathField.getText();
+        return this.chooseFileBtn.getTextField().getText();
     }
 
     /**
@@ -52,7 +80,7 @@ public class PluginSettingForm {
     }
 
     public void setBookPath(String s) {
-        this.pathField.setText(s);
+        this.chooseFileBtn.getTextField().setText(s);
     }
 
     public void setPage(int line) {
@@ -76,4 +104,5 @@ public class PluginSettingForm {
     public void setPageSize(int rowCount) {
         this.pageSizeTextField.setText(String.valueOf(rowCount));
     }
+
 }

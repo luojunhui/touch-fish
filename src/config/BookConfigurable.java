@@ -84,7 +84,7 @@ public class BookConfigurable implements SearchableConfigurable {
         if (this.form == null) {
             this.form = new PluginSettingForm();
         }
-        return this.form.getPluginSettingPanel();
+        return this.form.getSettingPanel();
     }
 
     /**
