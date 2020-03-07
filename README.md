@@ -4,8 +4,10 @@
 # 效果图
 ![Touch Fish window](files/window.gif)
 
+# 插件安装
+直接在Settings的Plugins搜Touch Fish安装.
 
-# 安装
+# 手动安装
 以IDEA为例:
 ```Intellij IDEA File——>Settings——>IDE setttings——>Plugins——>Install plugin from disk```
 
