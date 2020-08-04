@@ -1,4 +1,4 @@
-package config;
+package cn.luojunhui.touchfish.config;
 
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;

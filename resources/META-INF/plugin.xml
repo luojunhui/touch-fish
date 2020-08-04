@@ -49,10 +49,10 @@
     <depends>com.intellij.modules.lang</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationConfigurable groupId="other" instance="config.BookConfigurable"></applicationConfigurable>
-        <applicationService serviceInterface="config.ConfigService" serviceImplementation="config.ConfigServiceImpl"/>
+        <applicationConfigurable groupId="other" instance="cn.luojunhui.touchfish.config.BookConfigurable"></applicationConfigurable>
+        <applicationService serviceInterface="cn.luojunhui.touchfish.config.ConfigService" serviceImplementation="cn.luojunhui.touchfish.config.ConfigServiceImpl"/>
         <toolWindow id="Touch Fish" secondary="false" anchor="bottom" icon="/icons/fish_14.png"
-                    factoryClass="windows.BookWindowFactory">
+                    factoryClass="cn.luojunhui.touchfish.windwos.BookWindowFactory">
         </toolWindow>
     </extensions>
 </idea-plugin>

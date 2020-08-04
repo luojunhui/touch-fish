@@ -1,4 +1,4 @@
-package config;
+package cn.luojunhui.touchfish.config;
 
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
@@ -40,8 +40,9 @@ public class PluginSettingForm {
 
 
         Config config = ConfigService.getInstance().getState();
-        String bookPath = config.getBookPath().trim();
+        String bookPath = config.getBookPath();
         if (StringUtil.isNotEmpty(bookPath)) {
+            bookPath = bookPath.trim();
             this.chooseFileBtn.getTextField().setText(bookPath);
             this.pageSizeTextField.setText(String.valueOf(config.getPageSize()));
             this.pageTextField.setText(String.valueOf(config.getPage()));
