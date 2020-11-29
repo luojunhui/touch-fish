@@ -1,4 +1,4 @@
-package config;
+package cn.luojunhui.touchfish.config;
 
 import com.intellij.util.xmlb.annotations.OptionTag;
 

@@ -1,12 +1,12 @@
-package windows;
+package cn.luojunhui.touchfish.windwos;
 
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.ToolWindow;
-import config.Config;
-import config.ConfigService;
+import cn.luojunhui.touchfish.config.Config;
+import cn.luojunhui.touchfish.config.ConfigService;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;

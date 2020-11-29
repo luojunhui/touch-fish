@@ -1,4 +1,4 @@
-package config;
+package cn.luojunhui.touchfish.config;
 
 import com.intellij.ide.ui.UINumericRange;
 import com.intellij.openapi.options.ConfigurationException;

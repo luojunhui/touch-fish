@@ -1,4 +1,4 @@
-package windows;
+package cn.luojunhui.touchfish.windwos;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.wm.ToolWindow;
