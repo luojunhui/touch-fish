@@ -1,0 +1,46 @@
+// Copyright 2000-2020 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+
+plugins {
+    id 'java'
+    //  gradle 开发IDEA 插件，使用gradle runIde运行插件
+    id 'org.jetbrains.intellij' version '0.6.5'
+}
+
+group 'cn.luojunhui'
+version '2.3.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+// 指定编译时的编码格式，避免中文乱码
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+    // 指定 gradle plugin 的国内maven源，可自行增加其他速度快的maven源
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/gradle-plugin/'}
+}
+
+// See https://github.com/JetBrains/gradle-intellij-plugin/
+intellij {
+    version '2020.2.2'
+    // 不下载源代码
+    downloadSources false
+    // 可以指定在不同的IDE上测试，具体上面的链接有示例
+    // type 'PY'
+}
+runIde {
+    // 启用/禁用动态插件的自动重新加载
+    autoReloadPlugins = false
+    // 本地调试运行插件时，指定IDE实例，避免每次都下载几百M的实例文件
+    ideDirectory = 'C:\\software\\IntelliJ IDEA Community Edition 2020.2.2'
+    // 指定jbr的版本
+    jbrVersion = 'jbrsdk8-windows-x64'
+}
+
+buildSearchableOptions {
+    enabled = false
+}
+
+patchPluginXml {
+    version = project.version
+}

@@ -1,12 +1,11 @@
 package cn.luojunhui.touchfish.windwos;
 
+import cn.luojunhui.touchfish.config.BookSettingsState;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.ToolWindow;
-import cn.luojunhui.touchfish.config.Config;
-import cn.luojunhui.touchfish.config.ConfigService;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -34,8 +33,8 @@ public class Book {
 
 
     private void init() {
-        Config config = ConfigService.getInstance().getState();
-        if (StringUtil.isNotEmpty(config.getBookPath())) {
+        BookSettingsState settings = BookSettingsState.getInstance().getState();
+        if (StringUtil.isNotEmpty(settings.getBookPath())) {
             this.readText(CURRENT);
         } else {
             this.setText("没有文本文件路径...");
@@ -70,38 +69,39 @@ public class Book {
      * @param op
      */
     private void readText(int op) {
-        Config config = ConfigService.getInstance().getState();
-        int curPage = config.getPage();
+        BookSettingsState settings = BookSettingsState.getInstance().getState();
+        int curPage = settings.getPage();
         List list = null;
         switch (op) {
             case PREV:
                 int prevPage = curPage == 1 ? curPage : curPage - 1;
-                list = this.readFromPage(config.getLines(), prevPage, config.getPageSize());
+                list = this.readFromPage(settings.getLines(), prevPage, settings.getPageSize());
                 if (prevPage == curPage) {
                     Notifications.Bus.notify(new Notification("", "tip", "不能再往前翻页了...", NotificationType.INFORMATION));
-                    config.setPage(1);
+                    settings.setPage(1);
                 } else {
-                    config.setPage(prevPage);
+                    settings.setPage(prevPage);
                 }
                 break;
             case NEXT:
-                int nextPage = curPage == config.getTotalPage() ? curPage : curPage + 1;
-                list = this.readFromPage(config.getLines(), nextPage, config.getPageSize());
+                int nextPage = curPage == settings.getTotalPage() ? curPage : curPage + 1;
+                list = this.readFromPage(settings.getLines(), nextPage, settings.getPageSize());
                 if (nextPage == curPage) {
                     Notifications.Bus.notify(new Notification("", "tip", "不能再后前翻页了...", NotificationType.INFORMATION));
-                    config.setPage(curPage);
+                    settings.setPage(curPage);
                 } else {
-                    config.setPage(nextPage);
+                    settings.setPage(nextPage);
                 }
                 break;
             case CURRENT:
-                list = this.readFromPage(config.getLines(), curPage, config.getPageSize());
+                list = this.readFromPage(settings.getLines(), curPage, settings.getPageSize());
                 break;
             default:
                 break;
         }
         this.setText(list);
-        ConfigService.getInstance().setState(config);
+        //更新值
+        BookSettingsState.getInstance().loadState(settings);
     }
 
     /**
