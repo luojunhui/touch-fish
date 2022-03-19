@@ -4,6 +4,7 @@ import cn.luojunhui.touchfish.config.BookSettingsState;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.notification.Notifications;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.wm.ToolWindow;
 
@@ -20,9 +21,11 @@ import java.util.stream.Collectors;
  * @author junhui
  */
 public class Book {
-    private final int PREV = 0;
-    private final int NEXT = 1;
-    private final int CURRENT = 2;
+    private static final Logger LOGGER = Logger.getInstance(Book.class);
+
+    private static final int PREV = 0;
+    private static final int NEXT = 1;
+    private static final int CURRENT = 2;
 
     private JPanel book;
     private JTextPane text;
@@ -34,6 +37,12 @@ public class Book {
 
     private void init() {
         BookSettingsState settings = BookSettingsState.getInstance().getState();
+        if (settings == null) {
+            String info = "请先到插件面板设置阅读信息。";
+            LOGGER.info(info);
+            Notifications.Bus.notify(new Notification("", "tip", info, NotificationType.INFORMATION));
+            return;
+        }
         if (StringUtil.isNotEmpty(settings.getBookPath())) {
             this.readText(CURRENT);
         } else {
@@ -66,10 +75,16 @@ public class Book {
     /**
      * 按页读取内容
      *
-     * @param op
+     * @param op user option
      */
     private void readText(int op) {
         BookSettingsState settings = BookSettingsState.getInstance().getState();
+        if (settings == null) {
+            String info = "请先到插件面板设置阅读信息。";
+            LOGGER.info(info);
+            Notifications.Bus.notify(new Notification("", "tip", info, NotificationType.INFORMATION));
+            return;
+        }
         int curPage = settings.getPage();
         List list = null;
         switch (op) {
@@ -121,8 +136,8 @@ public class Book {
     }
 
     private void setText(List list) {
-        if (list != null && list.size() > 0) {
-            StringBuffer sb = new StringBuffer();
+        if (list != null && !list.isEmpty()) {
+            StringBuilder sb = new StringBuilder();
             list.forEach(s -> sb.append(s).append("\n"));
             this.text.setText(sb.toString());
         }

@@ -27,6 +27,7 @@
     <li>在keymap里可以给本插件设置快捷键,可以快速呼出与隐藏</li>
 </ol>
 <p>项目地址:<a href="https://github.com/luojunhui/touch-fish">https://github.com/luojunhui/touch-fish</p>
+<p>如果有bug，请在help - Show Log in Explorer里查找idea.log相关报错信息，与我联系</p>
       ]]>
     </description>
 
@@ -34,6 +35,7 @@
     <change-notes>
         <![CDATA[
         <ul>
+            <li>v2.3.2 support IntelliJ Platform version 2022.1 version</li>
             <li>v2.3.1 using Gradle as a build system. fix bugs.</li>
             <li>v2.3 change input file path to select file on settings form</li>
             <li>v2.2 add change notes description in English</li>
@@ -45,9 +47,7 @@
     ]]>
     </change-notes>
 
-
-    <idea-version since-build="145"/>
-    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationConfigurable groupId="tools"

@@ -25,18 +25,16 @@ public class BookSettingsComponent {
                 .addLabeledComponent(new JBLabel("每页行数: "), pageSizeTextField, 1, false)
                 .addLabeledComponent(new JBLabel("当前页码: "), pageTextField, 1, false)
                 .getPanel();
-        //按钮绑定事件
-        this.chooseFileBtn.addBrowseFolderListener("选择文件", null, null,
-                FileChooserDescriptorFactory.createSingleFileDescriptor("txt"));
-
-        init();
-
     }
 
     /**
      * 表单初始化赋值
      */
-    private void init() {
+    public void init() {
+        //按钮绑定事件
+        this.chooseFileBtn.addBrowseFolderListener("选择文件", null, null,
+                FileChooserDescriptorFactory.createSingleFileDescriptor("txt"));
+
         BookSettingsState settings = BookSettingsState.getInstance().getState();
         String bookPath = settings.getBookPath();
         if (StringUtil.isNotEmpty(bookPath)) {
